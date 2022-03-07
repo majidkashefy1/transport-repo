@@ -2,5 +2,9 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/from-repo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/laravel-private-cabin-core" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/transport-repo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/transport-repo2" vcs="Git" />
   </component>
 </project>

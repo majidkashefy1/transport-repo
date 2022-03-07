@@ -1,0 +1,86 @@
+{
+  "version" : "1.2",
+  "profiles" : [ {
+    "id" : "00f842b6-d2ff-449a-a544-77f3513e9028",
+    "name" : "Laravel (PHP, BLADE)",
+    "keyNamingPattern" : "SNAKE_CASE_PATTERN",
+    "sink" : {
+      "id" : "220dda29-2a2c-4327-95bb-7f66e5619848",
+      "type" : "namespaced",
+      "translationsDirectory" : "$PROJECT_DIR$/laravel-private-cabin-core/resources/lang",
+      "fileType" : "php",
+      "defaultLocale" : "en",
+      "namespaces" : [ "admin", "auth", "email", "error", "pagination", "passwords", "user", "validation" ],
+      "outputFilenameTemplate" : "%locale%/%namespace%.php",
+      "nestingType" : "DOT",
+      "placeholderFormatterName" : "LARAVEL"
+    },
+    "sources" : [ {
+      "id" : "e6cad706-a921-4926-8497-6bee7ff235a7",
+      "type" : "php",
+      "scopeName" : "i18n Ally: Laravel/PHP source",
+      "scopePattern" : "file[transport-repo]:laravel-private-cabin-core/app//*&&!file[transport-repo]:laravel-private-cabin-core/app/Broadcasting//*&&!file[transport-repo]:laravel-private-cabin-core/app/Console//*&&!file[transport-repo]:laravel-private-cabin-core/app/Events//*&&!file[transport-repo]:laravel-private-cabin-core/app/Exceptions//*&&!file[transport-repo]:laravel-private-cabin-core/app/Models//*&&!file[transport-repo]:laravel-private-cabin-core/app/Providers//*",
+      "defaultReplacementTemplate" : "trans('%namespace%.%key%', %map%)",
+      "recognizedReplacementTemplates" : [ ],
+      "skipDefaultNamespace" : false,
+      "sprintfMode" : false
+    }, {
+      "id" : "63c830b7-78df-4111-9e8b-23d44d8202a9",
+      "type" : "blade",
+      "scopeName" : "i18n Ally: Laravel/Blade templates",
+      "scopePattern" : "file[transport-repo]:laravel-private-cabin-core/resources/views//*",
+      "defaultReplacementTemplate" : "trans('%namespace%.%key%', %map%)",
+      "attributeReplacementTemplate" : "",
+      "inlineTagsReplacementTemplate" : "",
+      "recognizedReplacementTemplates" : [ ],
+      "inlineTagNames" : [ "a", "abbr", "acronym", "b", "bdi", "bdo", "big", "br", "cite", "code", "data", "del", "dfn", "em", "i", "img", "input", "ins", "kbd", "label", "mark", "meter", "output", "progress", "q", "ruby", "s", "samp", "slot", "small", "span", "strong", "sub", "sup", "time", "u", "tt", "var", "wbr" ],
+      "translatableAttributeNames" : [ "title", "alt", "placeholder", "label", "aria-label" ],
+      "skipDefaultNamespace" : false
+    } ]
+  }, {
+    "id" : "033e34d9-25f9-4d5b-9647-c9fdf028fd7d",
+    "name" : "Symfony (PHP, TWIG)",
+    "keyNamingPattern" : "SNAKE_CASE_PATTERN",
+    "sink" : {
+      "id" : "a78ecb6c-2dd9-4879-b7d2-4495a9c755fc",
+      "type" : "namespaced",
+      "translationsDirectory" : "$PROJECT_DIR$/laravel-private-cabin-core/resources/lang",
+      "fileType" : "php",
+      "defaultLocale" : "en",
+      "namespaces" : [ "admin", "auth", "email", "error", "pagination", "passwords", "user", "validation" ],
+      "outputFilenameTemplate" : "%locale%/%namespace%.php",
+      "nestingType" : "DOT",
+      "placeholderFormatterName" : "SYMFONY_REPLACEMENT"
+    },
+    "sources" : [ {
+      "id" : "60d65228-6012-4f53-aef4-b1f4174c357a",
+      "type" : "php",
+      "scopeName" : "i18n Ally: Symfony/PHP source",
+      "scopePattern" : "file[transport-repo]:laravel-private-cabin-core/src//*&&!file[transport-repo]:laravel-private-cabin-core/src/DataFixtures//*",
+      "defaultReplacementTemplate" : "$this->translator->trans('%key%', %map%, '%namespace%')",
+      "recognizedReplacementTemplates" : [ ],
+      "skipDefaultNamespace" : true,
+      "sprintfMode" : false
+    }, {
+      "id" : "e47637ae-c52e-463c-b801-cf7ea95e087e",
+      "type" : "twig",
+      "scopeName" : "i18n Ally: Symfony/Twig templates",
+      "scopePattern" : "file[transport-repo]:laravel-private-cabin-core/templates//*",
+      "defaultReplacementTemplate" : "trans(%map%, '%namespace%')",
+      "attributeReplacementTemplate" : "",
+      "inlineTagsReplacementTemplate" : "trans(%map%, '%namespace%')|raw",
+      "recognizedReplacementTemplates" : [ ],
+      "inlineTagNames" : [ "a", "abbr", "acronym", "b", "bdi", "bdo", "big", "br", "cite", "code", "data", "del", "dfn", "em", "i", "img", "input", "ins", "kbd", "label", "mark", "meter", "output", "progress", "q", "ruby", "s", "samp", "slot", "small", "span", "strong", "sub", "sup", "time", "u", "tt", "var", "wbr" ],
+      "translatableAttributeNames" : [ "title", "alt", "placeholder", "label", "aria-label" ],
+      "skipDefaultNamespace" : true
+    } ]
+  } ],
+  "ignores" : {
+    "valuesInProject" : [ "use strict" ],
+    "valuesInFile" : { },
+    "filesInProject" : [ ],
+    "unignoredFunctionNames" : [ ],
+    "unignoredFunctionArguments" : { },
+    "ignoredArrayKeys" : [ "class", "selector", "template", "middleware", "layout", "el", "component", "type", "name", "id", "key", "sql", "query", "dateFormat", "date", "condition" ]
+  }
+}
