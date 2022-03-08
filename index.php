@@ -16,11 +16,15 @@ $retval = null;
 
 //clone repo
 //exec('git clone '.$sourceRepoUrl.' || exit 1', $output, $retval);
-if (!file_exists(__DIR__.DIRECTORY_SEPARATOR.$sourceDirName)){
-    exec('git clone '.$sourceRepoUrl);
+if (!file_exists(__DIR__ . DIRECTORY_SEPARATOR . $sourceDirName)) {
+    exec('git clone ' . $sourceRepoUrl);
 }
 
-exec('git clone '.$sourceRepoUrl.' && cd ' . $sourceDirName . ' && git checkout develop && git remote add b '.$destinationRepoUrl.' && git add . && git commit -m "from1 php" && git push b develop', $output, $retval);
+exec('cd ' . $sourceDirName . ' && git checkout develop && git pull origin develop');
+exec('git remote add b ' . $destinationRepoUrl, $output, $retval);
+exec('git add . && git commit -m "from1 php" && git push b develop', $output, $retval);
+var_dump($output, $retval);
+die;
 
 echo "Returned with status $retval and output:\n";
 //echo 'done.';
