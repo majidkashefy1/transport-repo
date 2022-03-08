@@ -21,8 +21,9 @@ if (!file_exists(__DIR__ . DIRECTORY_SEPARATOR . $sourceDirName)) {
 }
 
 exec('cd ' . $sourceDirName . ' && git checkout develop && git pull origin develop');
-exec('git remote add b ' . $destinationRepoUrl, $output, $retval);
-exec('git add . && git commit -m "from1 php" && git push b develop', $output, $retval);
+//exec('git remote add b ' . $destinationRepoUrl, $output, $retval);
+exec('git add . && git commit -m "from1 php"');
+exec('git push b develop', $output, $retval);
 var_dump($output, $retval);
 die;
 
