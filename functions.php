@@ -102,6 +102,8 @@ function action($source_repos_name, $localRepoDir, $source_repos_url, $destinati
     transportRepos($source_repos_name, $localRepoDir,$destination_git_Uname, $rand_string);
 
     forceRemoveLocalRepos($localRepoDir, $source_repos_name);
+
+    return 'done';
 }
 //
 //function getFullReposDir($local_repo_dir, $source_repos_url): array
