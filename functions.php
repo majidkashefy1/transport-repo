@@ -103,7 +103,7 @@ function action($source_repos_name, $localRepoDir, $source_repos_url, $destinati
 
     forceRemoveLocalRepos($localRepoDir, $source_repos_name);
 
-    return 'done';
+    echo 'done!';
 }
 //
 //function getFullReposDir($local_repo_dir, $source_repos_url): array
