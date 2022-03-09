@@ -18,9 +18,9 @@ function makeOnlineRepo($name)
     exec('curl -H "Content-Type:application/json" https://gitlab.com/api/v4/projects?private_token=glpat-FGakNP5qQeAB7dyzXimx -d "{ \"name\": \"' . $name . '\" }"');
 }
 
-function makeOnlineRepos($source_repos_url)
+function makeOnlineRepos($source_repos_name)
 {
-    foreach ($source_repos_url as $source_repo) {
+    foreach ($source_repos_name as $source_repo) {
         makeOnlineRepo($source_repo);
     }
 }
@@ -62,7 +62,7 @@ function transportRepo($local_source_dir, $randString, $destinationRepoUrl)
     exec('cd ' . $local_source_dir . ' && git remote add ' . $randString . ' ' . $destinationRepoUrl . ' && git push ' . $randString . ' --tags "refs/remotes/origin/*:refs/heads/*"', $output, $retval);
 }
 
-function transportRepos($source_names, $local_repo_dir, $git_uname, $randString, $destination_repo_url)
+function transportRepos($source_names, $local_repo_dir, $git_uname, $randString)
 {
     foreach ($source_names as $source_repo) {
         $local_source_dir = $local_repo_dir . DIRECTORY_SEPARATOR . $source_repo;
@@ -94,12 +94,22 @@ function getSourceDirName($source_repos_url): array
     return $sourceDirName;
 }
 
-function getFullReposDir($local_repo_dir, $source_repos_url): array
-{
-    $sourceReposDirName = [];
-    foreach ($source_repos_url as $source_repo) {
-        $sourceReposDirName[] = $local_repo_dir . DIRECTORY_SEPARATOR . $source_repo;
-    }
-    return $sourceReposDirName;
+function action($source_repos_name, $localRepoDir, $source_repos_url, $destination_git_Uname , $rand_string){
+    cloneSourceRepos($localRepoDir, $source_repos_url);
+
+    makeOnlineRepos($source_repos_name);
+
+    transportRepos($source_repos_name, $localRepoDir,$destination_git_Uname, $rand_string);
+
+    forceRemoveLocalRepos($localRepoDir, $source_repos_name);
 }
+//
+//function getFullReposDir($local_repo_dir, $source_repos_url): array
+//{
+//    $sourceReposDirName = [];
+//    foreach ($source_repos_url as $source_repo) {
+//        $sourceReposDirName[] = $local_repo_dir . DIRECTORY_SEPARATOR . $source_repo;
+//    }
+//    return $sourceReposDirName;
+//}
 
