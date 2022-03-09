@@ -6,6 +6,8 @@
     <mapping directory="$PROJECT_DIR$/BonoboGitServer" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/from-repo" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/laravel-private-cabin-core" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/repositories/from-repo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/repositories/school-managment" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/transport-repo" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/transport-repo2" vcs="Git" />
   </component>

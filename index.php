@@ -3,37 +3,43 @@
 //error_reporting(E_ALL);
 //ini_set('display_errors', 0);
 
-require_once 'from.php';
-require_once 'to.php';
+require_once 'functions.php';
 
-//$sourceRepoUrl = 'git@github.com:majidkashefy1/from-repo.git';
 $output = null;
 $retval = null;
+$randString = '';
+$destinationRepoUrl = '';
+$localRepoDir = 'repositories';
 
 //$sourceRepoUrl = 'http://172.20.1.5/ir.simorgh.git/AutoWindowsUpdateDisabler.git';
-$sourceRepoUrl = 'git@github.com:majidkashefy1/from-repo.git';
-$sourceDirName = explode('.', array_reverse(explode('/', $sourceRepoUrl))[0])[0];
 
-exec('curl -H "Content-Type:application/json" https://gitlab.com/api/v4/projects?private_token=glpat-FGakNP5qQeAB7dyzXimx -d "{ \"name\": \"'.$sourceDirName.'\" }"');
+try {
+    $randString = generateRandomString();
+//    $sourceDirName = explode('.', array_reverse(explode('/', $sourceRepoUrl))[0])[0];
+    $sourceDirName = getSourceDirName($sourceRepoUrl); //array
 
-$destinationRepoUrl = 'git@gitlab.com:kashefsimorgh/'.$sourceDirName.'.git';
-$randString= generateRandomString();
+//    $fullRepoDir = $localRepoDir . DIRECTORY_SEPARATOR . $sourceDirName;
+    $fullRepoDir = getFullReposDir($localRepoDir, $sourceDirName); //array
 
+    $destinationRepoUrl = getDestinationRepos($destinationGitUname, $sourceDirName); //array
 
-//clone repo
-//exec('git clone '.$sourceRepoUrl.' || exit 1', $output, $retval);
-if (!file_exists(__DIR__ . DIRECTORY_SEPARATOR . $sourceDirName)) {
-    exec('git clone ' . $sourceRepoUrl);
+//    var_dump($fullRepoDir, $sourceDirName);die;
+
+//    cloneSourceRepo($localRepoDir, $sourceRepoUrl);
+    cloneSourceRepos($localRepoDir, $sourceRepoUrl);
+
+//    makeOnlineRepo($sourceDirName);
+    makeOnlineRepos($sourceDirName);
+
+//    transportRepo($fullRepoDir, $randString, $destinationRepoUrl);
+    transportRepos($sourceDirName, $localRepoDir,$destinationGitUname, $randString, $destinationRepoUrl);
+
+//    forceRemoveLocalRepo($localRepoDir, $sourceDirName);
+    forceRemoveLocalRepos($localRepoDir, $sourceDirName);
+
+//    var_dump($output, $retval);die();
+
+} catch (Exception $e) {
+    echo 'Caught exception: ', $e->getMessage(), "\n";
 }
 
-//rmdir(__DIR__ . DIRECTORY_SEPARATOR . $sourceDirName);
-//die('cd ' . $sourceDirName. ' && git remote add '.$randString .' '. $destinationRepoUrl. ' && git push '.$randString.' --tags "refs/remotes/origin/*:refs/heads/*"');
-//exec('cd ' . $sourceDirName);
-//exec('git push origin && git checkout develop && git pull origin main');
-//exec('git remote add b ' . $destinationRepoUrl. ' || git status', $output, $retval);
-exec('cd ' . $sourceDirName. ' && git remote add '.$randString .' '. $destinationRepoUrl. ' && git push '.$randString.' --tags "refs/remotes/origin/*:refs/heads/*"', $output, $retval);
-
-
-var_dump($output, $retval);
-
-//unlink(__DIR__ . DIRECTORY_SEPARATOR . $sourceDirName);
